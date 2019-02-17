@@ -8,9 +8,7 @@ This specification is my attempt to document how the story game should work in g
 
 I will attempt to take a deep-dive, using the (12factor app)[12factor.net] spec as a guide.
 
-### Specification
-
-#### Game flow
+### Game flow
 
 **_Player one_** - Session creator.
 **_Player two_** - Session guest/joinee.
@@ -27,25 +25,25 @@ I will attempt to take a deep-dive, using the (12factor app)[12factor.net] spec 
   - share a link to the story (on Twitter and Facebook)
   - print out as pdf (and Word?)
 
-**_Meta_**
+**Meta**
 
 - Title can be edited throughout the session.
 
-#### Components
+### Components
 
 2 main components - API and Frontend.
 
 Components are seperated on a code level, not on an infrastructure level.
 
-#### Frontend
+### Frontend
 
 **Stack** - React
 
-#### API
+### API
 
 **Stack** - Node
 
-#### External Services
+### External Services
 
 **Real-time connection** - Socket.io or PubNub.
 

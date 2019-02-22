@@ -6,9 +6,9 @@ The idea for this game is to deploy a two-player, text-based game in which users
 
 This specification is my attempt to document how the story game should work in general. From game flow, to more technical specifications like software stack etc.
 
-I will attempt to take a deep-dive, using the (12factor app)[12factor.net] spec as a guide.
+I will attempt to take a deep-dive, using the [12factor app spec](12factor.net) as a guide.
 
-### Game flow
+## Game flow
 
 **_Player one_** - Session creator.
 **_Player two_** - Session guest/joinee.
@@ -29,7 +29,7 @@ I will attempt to take a deep-dive, using the (12factor app)[12factor.net] spec 
 
 - Title can be edited throughout the session.
 
-### Components
+## Components
 
 2 main components - API and Frontend.
 
@@ -37,15 +37,67 @@ Components are seperated on a code level, not on an infrastructure level.
 
 ### Frontend
 
-**Stack** - React
+**Behaviour**
+
+- Provides the interface for users to play.
+- Regulates the session and decides whose turn it is to play.
+- Only switches turns if the player is not currently typing.
+- Concatenates the story on each user entry and sends updates to the API in 3-minute intervals.
+- Sends final update when the game ends.
+
+**Stack**
+
+- React
+
+**Screens**
+
+- New story (Player name, email (optional))
+- Join story (Lists available stories)
+- Collaborate
+- View story (final screen)
 
 ### API
 
-**Stack** - Node
+**Behaviour**
+
+- Handles authentication (if any)
+- Database reads & writes
+- Exposes data through REST endpoints.
+- Storing each entry with meta data of who wrote it.
+- Uses player IDs, not names, for identification.
+
+**Stack**
+
+- NodeJS with Express or Go
+
+**Endpoints**
+
+- Create story session (POST) - Player one name & email.
+- Join session (PUT) - `Player two name`
+- Add new paragraph - `Player id & text`
+- Save Story (PUT)
+- View Story (GET)
+
+**Story Data Structure Example**
+
+```
+list = [
+    {"user": "<player1-id>", "text": "There was a man with big balls."},
+    {"user": "<player2-id>", "text": "He spent time making them dance."},
+    {"user": "<player1-id>", "text": "He was eventually arrested for sexual assault."}
+]
+
+//Output
+There was a man with big balls.
+He spent time making them dance.
+He was eventually arrested for sexual assault.
+
+Story by: <player1-name> & <player2-name>
+```
 
 ### External Services
 
-**Real-time connection** - Socket.io or PubNub.
+- **Real-time connection** - Socket.io or PubNub.
 
 ### Action Points
 

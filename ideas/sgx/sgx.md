@@ -43,6 +43,7 @@ Components are seperated on a code level, not on an infrastructure level.
 **Behaviour**
 
 - Provides the interface for users to play.
+- Assigns a user a random animal image when they join.
 - Regulates the session and decides whose turn it is to play.
 - Only switches turns if the player is not currently typing.
 - Concatenates the story on each user entry and sends updates to the API in 3-minute intervals.

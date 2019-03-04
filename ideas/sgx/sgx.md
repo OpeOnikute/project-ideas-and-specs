@@ -40,6 +40,9 @@ Components are seperated on a code level, not on an infrastructure level.
 
 ### Frontend
 
+UI inspired by [Fitness app chatbot ui ux
+by Virgil Pana](https://dribbble.com/shots/3850121-Fitness-app-chatbot-ui-ux).
+
 **Behaviour**
 
 - Provides the interface for users to play.
@@ -57,7 +60,7 @@ Components are seperated on a code level, not on an infrastructure level.
 
 - New story (Player name, email (optional))
 - Join story (Lists available stories)
-- Collaborate
+- Collaborate [here](assets/story-page.png)
 - View story (final screen)
 
 ### API

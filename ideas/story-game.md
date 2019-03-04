@@ -8,6 +8,8 @@ This specification is my attempt to document how the story game should work in g
 
 I will attempt to take a deep-dive, using the [12factor app spec](12factor.net) as a guide.
 
+Implementation can be found [here](https://github.com/OpeOnikute/sgx).
+
 ## Game flow
 
 **_Player one_** - Session creator.
@@ -18,6 +20,7 @@ I will attempt to take a deep-dive, using the [12factor app spec](12factor.net) 
 - Each player gets one minute un-restricted to type in a paragraph.
 - If a player hasn't entered non-empty text after the full minute, the other player gets his own next minute.
 - When players are done, player one can decide to end.
+- The title is chosen at the end.
 - When the game ends, the system provides box that contains the entire story, formatted in paragraphs.
 - Player one can then:
   - edit the content of that box

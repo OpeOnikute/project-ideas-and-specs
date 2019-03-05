@@ -58,10 +58,15 @@ by Virgil Pana](https://dribbble.com/shots/3850121-Fitness-app-chatbot-ui-ux).
 
 **Screens**
 
-- New story (Player name, email (optional))
-- Join story (Lists available stories)
-- Collaborate [here](assets/story-page.png)
+- New story
+<img width="720px" src="assets/create-story.png" alt="creat story"></p>
+<img width="720px" src="assets/create-story-modal.png" alt="create story modal"></p>
+- Join story
+<img width="720px" src="assets/join-story.png" alt="join story"></p>
+- Collaborate 
+<img width="720px" src="assets/story-page.png" alt="collab"></p>
 - View story (final screen)
+<img width="720px" src="assets/view-story.png" alt="view story"></p>
 
 ### API
 

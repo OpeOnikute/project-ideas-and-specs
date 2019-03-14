@@ -76,7 +76,7 @@ by Virgil Pana](https://dribbble.com/shots/3850121-Fitness-app-chatbot-ui-ux).
 
 - View story (final screen)
 
-<img width="720px" height="730px" src="assets/view-story.png" alt="view story">
+<img width="720px" src="assets/view-story.png" alt="view story">
 
 ### API
 
@@ -121,7 +121,7 @@ Story by: <player1-name> & <player2-name>
 
 This is an attempt to define how the client and server should interact throughout the lifecycle of the game. The use of websockets during actual game-play makes it less straightforward than calling REST endpoints directly.
 
-<img width="720px" src="assets/communication-specs.png" alt="view story">
+<img width="720px"  height="730px" src="assets/communication-specs.png" alt="view story">
 
 **Websocket Signals**
 
@@ -132,8 +132,7 @@ This is an attempt to define how the client and server should interact throughou
 | story:paragraph     | Frontend |                            Adds a new paragraph. |                `playerID,content` |
 | story:new-paragraph | Frontend |    Informs connected clients of a new paragraph. |                `playerID,content` |
 | story:end           | Frontend |        Sends request to end the session (Owner). |                        `playerID` |
-| story:end           | Frontend |  Informs connected clients of the session's end. |
-|                     |
+| story:end           | Frontend |  Informs connected clients of the session's end. |                                   |
 
 N.B: There's no need to pass the story ID in WS requests cause the WS connection is already segmented based on the story.
 

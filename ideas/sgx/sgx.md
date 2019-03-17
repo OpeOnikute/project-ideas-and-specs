@@ -12,15 +12,16 @@ Implementation can be found [here](https://github.com/OpeOnikute/sgx).
 
 ## Game flow
 
-**_Player one_** - Session creator.
-**_Player two_** - Session guest/joinee.
+**_Player one_** - Story owner.
+**_Player two_** - Accomplice.
 
 - Player one starts the game. Enters title of story and his/her name.
+- Player one then shares a link to join the game.
 - Player two joins the game.
-- Each player gets one minute un-restricted to type in a paragraph.
-- If a player hasn't entered non-empty text after the full minute, the other player gets his own next minute.
+- Each player gets one minute un-restricted to type in a paragraph (\*)
+- If a player hasn't entered non-empty text after the full minute, the other player gets his own next minute (\*)
 - When players are done, player one can decide to end.
-- The title is chosen at the end.
+- The title can be modified at the end. This is because players don't usually know what they wanna write before it starts.
 - When the game ends, the system provides box that contains the entire story, formatted in paragraphs.
 - Player one can then:
   - edit the content of that box
@@ -31,6 +32,7 @@ Implementation can be found [here](https://github.com/OpeOnikute/sgx).
 **Meta**
 
 - Title can be edited throughout the session.
+- Items marked with (\*) at the end are not exactly neccessary.
 
 ## Components
 
@@ -68,7 +70,7 @@ by Virgil Pana](https://dribbble.com/shots/3850121-Fitness-app-chatbot-ui-ux).
 
 <img width="720px" src="assets/join-story.png" alt="join story">
 
-- Collaborate 
+- Collaborate
 
 <img width="720px" src="assets/story-page.png" alt="collab">
 
@@ -115,9 +117,30 @@ He was eventually arrested for sexual assault.
 Story by: <player1-name> & <player2-name>
 ```
 
+### Communication Specs
+
+This is an attempt to define how the client and server should interact throughout the lifecycle of the game. The use of websockets during actual game-play makes it less straightforward than calling REST endpoints directly.
+
+<img width="720px"  height="730px" src="assets/communication-specs.png" alt="view story">
+
+**Websocket Signals**
+
+| Signal              |  Client  |                                      Description |                              Data |
+| ------------------- | :------: | -----------------------------------------------: | --------------------------------: |
+| story:join          | Frontend | Join a story. Works for both owner and player 2. |          `playerName,playerEmail` |
+| player:new          |   API    |       Informs connected clients of a new player. | `playerID,playerName,playerEmail` |
+| story:paragraph     | Frontend |                            Adds a new paragraph. |                `playerID,content` |
+| story:new-paragraph | Frontend |    Informs connected clients of a new paragraph. |                `playerID,content` |
+| story:end           | Frontend |        Sends request to end the session (Owner). |                        `playerID` |
+| story:end           | Frontend |  Informs connected clients of the session's end. |                                   |
+| player:disconnected |   API    |        Informs other clients of a disconnection. |                                   |
+| player:reconnected  |   API    |        Informs clients of a player reconnecting. |                                   |
+
+N.B: There's no need to pass the story ID in WS requests cause the WS connection is already segmented based on the story.
+
 ### External Services
 
-- **Real-time connection** - Socket.io or PubNub.
+- **Real-time connection** - Web socket API endpoint.
 
 ### Action Points
 

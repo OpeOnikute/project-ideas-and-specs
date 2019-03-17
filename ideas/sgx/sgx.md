@@ -130,9 +130,9 @@ This is an attempt to define how the client and server should interact throughou
 | story:join          | Frontend | Join a story. Works for both owner and player 2. |          `playerName,playerEmail` |
 | player:new          |   API    |       Informs connected clients of a new player. | `playerID,playerName,playerEmail` |
 | story:paragraph     | Frontend |                            Adds a new paragraph. |                `playerID,content` |
-| story:new-paragraph | Frontend |    Informs connected clients of a new paragraph. |                `playerID,content` |
+| story:new-paragraph |   API    |    Informs connected clients of a new paragraph. |                `playerID,content` |
 | story:end           | Frontend |        Sends request to end the session (Owner). |                        `playerID` |
-| story:end           | Frontend |  Informs connected clients of the session's end. |                                   |
+| story:end           |   API    |  Informs connected clients of the session's end. |                                   |
 | player:disconnected |   API    |        Informs other clients of a disconnection. |                                   |
 | player:reconnected  |   API    |        Informs clients of a player reconnecting. |                                   |
 

@@ -125,18 +125,21 @@ This is an attempt to define how the client and server should interact throughou
 
 **Websocket Signals**
 
-| Signal              |  Client  |                                      Description |                              Data |
-| ------------------- | :------: | -----------------------------------------------: | --------------------------------: |
-| story:join          | Frontend | Join a story. Works for both owner and player 2. |          `playerName,playerEmail` |
-| player:new          |   API    |       Informs connected clients of a new player. | `playerID,playerName,playerEmail` |
-| story:paragraph     | Frontend |                            Adds a new paragraph. |                `playerID,content` |
-| story:new-paragraph |   API    |    Informs connected clients of a new paragraph. |                `playerID,content` |
-| story:end           | Frontend |        Sends request to end the session (Owner). |                        `playerID` |
-| story:end           |   API    |  Informs connected clients of the session's end. |                                   |
-| player:disconnected |   API    |        Informs other clients of a disconnection. |                                   |
-| player:reconnected  |   API    |        Informs clients of a player reconnecting. |                                   |
+| Signal              |  Client  |                                                                       Description |                                Data |
+| ------------------- | :------: | --------------------------------------------------------------------------------: | ----------------------------------: |
+| story:create        | Frontend |                                                        Start a new story session. |            `playerName,playerEmail` |
+| story:created       |   API    |                               Informs the client that the story has been created. | `storyTitle,playerEmail,playerName` |
+| story:join          | Frontend | Join a story. Works for both owner and player 2. `storyOwner` is a boolean value. | `playerName,playerEmail,storyOwner` |
+| player:new          |   API    |                                        Informs connected clients of a new player. |   `playerID,playerName,playerEmail` |
+| story:paragraph     | Frontend |                                                             Adds a new paragraph. |                  `playerID,content` |
+| story:new-paragraph |   API    |                                     Informs connected clients of a new paragraph. |                  `playerID,content` |
+| story:end           | Frontend |                                         Sends request to end the session (Owner). |                          `playerID` |
+| story:end           |   API    |                                   Informs connected clients of the session's end. |                                     |
+| player:disconnected |   API    |                                         Informs other clients of a disconnection. |                                     |
+| player:reconnected  |   API    |                                         Informs clients of a player reconnecting. |                                     |
+| error               |   API    |                                                      Informs clients of an error. |                   `message,data(?)` |
 
-N.B: There's no need to pass the story ID in WS requests cause the WS connection is already segmented based on the story.
+N.B: There's no need to pass the story ID in WS requests cause the WS connection is already segmented based on the story. Unless maybe when we start to deal with re-connection issues.
 
 ### External Services
 
@@ -145,3 +148,4 @@ N.B: There's no need to pass the story ID in WS requests cause the WS connection
 ### Action Points
 
 - Select a better name.
+- Update diagram to reflect new story signal flow.
